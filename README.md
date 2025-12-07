@@ -19,7 +19,9 @@
 </p>
 
 <p align="center">
-  <a href="https://ecommerce-frontend-brown-eight.vercel.app/" target="_blank"><img src="https://img.shields.io/badge/Live%20Demo-Frontend-00C7B7?style=for-the-badge&logo=vercel" alt="Live Frontend" /></a>
+  <a href="https://ecommerce-frontend-brown-eight.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-Frontend-00C7B7?style=for-the-badge&logo=vercel" alt="Live Frontend" />
+  </a>
 </p>
 
 ---
