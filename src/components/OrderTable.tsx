@@ -1,5 +1,4 @@
-// src/components/OrderTable.tsx
-import { Trash2, Edit } from 'lucide-react';
+import { Trash2, Edit, Package, Calendar, Hash } from 'lucide-react';
 import { useState } from 'react';
 import ConfirmModal from './ConfirmModal';
 import type { Order } from '../services/api';
@@ -33,7 +32,6 @@ export default function OrderTable({ orders, search, onEdit, onDelete }: Props) 
 
   const confirmDelete = async () => {
     if (!orderToDelete) return;
-
     try {
       await onDelete(orderToDelete.id);
       closeDeleteModal();
@@ -44,53 +42,121 @@ export default function OrderTable({ orders, search, onEdit, onDelete }: Props) 
 
   return (
     <>
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+      {/* Responsive Table Container */}
+      <div className="w-full overflow-x-auto rounded-2xl shadow-2xl border border-slate-200">
+        <table className="min-w-full divide-y divide-slate-200">
+          {/* Header */}
+          <thead className="bg-gradient-to-r from-indigo-600 to-purple-700">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order Id</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order Description</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Count of Products</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created Date</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="px-6 py-5 text-left text-xs font-bold text-white uppercase tracking-wider">
+                <div className="flex items-center gap-2">
+                  <Hash className="w-5 h-5" />
+                  Order ID
+                </div>
+              </th>
+              <th className="px-6 py-5 text-left text-xs font-bold text-white uppercase tracking-wider">
+                <div className="flex items-center gap-2 hidden md:flex">
+                  <Package className="w-5 h-5" />
+                  Description
+                </div>
+                <span className="md:hidden">Order</span>
+              </th>
+              <th className="px-6 py-5 text-center text-xs font-bold text-white uppercase tracking-wider">
+                <div className="flex items-center justify-center gap-2">
+                  <Package className="w-5 h-5" />
+                  Products
+                </div>
+              </th>
+              <th className="px-6 py-5 text-left text-xs font-bold text-white uppercase tracking-wider hidden lg:table-cell">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5" />
+                  Created
+                </div>
+              </th>
+              <th className="px-6 py-5 text-center text-xs font-bold text-white uppercase tracking-wider">
+                Actions
+              </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+
+          {/* Body */}
+          <tbody className="bg-white divide-y divide-slate-100">
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-6 py-16 text-center text-gray-500 text-lg">
-                  {search ? 'No matching orders found' : 'No orders yet. Create your first one!'}
+                <td colSpan={5} className="px-6 py-24 text-center">
+                  <div className="max-w-sm mx-auto">
+                    <Package className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+                    <p className="text-xl font-medium text-slate-600">
+                      {search ? 'No orders match your search' : 'No orders yet'}
+                    </p>
+                    <p className="text-slate-500 mt-2">
+                      {search ? 'Try a different term' : 'Create your first order to begin'}
+                    </p>
+                  </div>
                 </td>
               </tr>
             ) : (
               filtered.map((order) => (
-                <tr key={order.id} className="hover:bg-gray-50 transition">
-                  <td className="px-6 py-4 whitespace-nowrap font-medium">{order.id}</td>
-                  <td className="px-6 py-4 text-gray-900 max-w-sm truncate" title={order.orderDescription}>
-                    {order.orderDescription}
+                <tr
+                  key={order.id}
+                  className="hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 transition-all duration-200"
+                >
+                  {/* Order ID */}
+                  <td className="px-6 py-5 whitespace-nowrap">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-gradient-to-br from-indigo-100 to-purple-100 p-2 rounded-lg">
+                        <Hash className="w-5 h-5 text-indigo-700" />
+                      </div>
+                      <span className="font-bold text-lg">{order.id}</span>
+                    </div>
                   </td>
-                  <td className="px-6 py-4 text-center font-semibold text-indigo-600">
-                    {order.productCount}
-                  </td>
-                  <td className="px-6 py-4 text-gray-500">
-                    {new Date(order.createdAt).toLocaleDateString('en-GB')}
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <button
-                      onClick={() => onEdit(order.id)}
-                      className="text-indigo-600 hover:text-indigo-800 mr-6 transition"
-                      title="Edit"
-                    >
-                      <Edit className="w-5 h-5 inline" /> <span className="hidden sm:inline ml-1"></span>
-                    </button>
 
-                    <button
-                      onClick={() => openDeleteModal(order)}
-                      className="text-red-600 hover:text-red-800 transition"
-                      title="Delete"
-                    >
-                      <Trash2 className="w-5 h-5 inline" /> <span className="hidden sm:inline ml-1"></span>
-                    </button>
+                  {/* Description */}
+                  <td className="px-6 py-5">
+                    <p className="text-base font-medium text-slate-800 max-w-xs lg:max-w-lg truncate" title={order.orderDescription}>
+                      {order.orderDescription}
+                    </p>
+                  </td>
+
+                  {/* Product Count */}
+                  <td className="px-6 py-5 text-center">
+                    <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-slate-100 to-indigo-50 text-indigo-700 font-bold text-lg px-5 py-3 rounded-full border-2 border-indigo-200 shadow-inner hover:shadow-md transition-all duration-200">
+                      {order.productCount}
+                      <Package className="w-5 h-5 text-indigo-600" />
+                    </div>
+                  </td>
+
+                  {/* Created Date - Hidden on mobile */}
+                  <td className="px-6 py-5 hidden lg:table-cell">
+                    <div className="flex items-center gap-2 text-slate-600">
+                      <Calendar className="w-5 h-5 text-indigo-600" />
+                      <span className="font-medium">
+                        {new Date(order.createdAt).toLocaleDateString('en-GB')}
+                      </span>
+                    </div>
+                  </td>
+
+                  {/* Actions */}
+                  <td className="px-6 py-5">
+                    <div className="flex items-center justify-center gap-3">
+                      {/* EDIT BUTTON — Secondary style (soft blue) */}
+                      <button
+                        onClick={() => onEdit(order.id)}
+                        className="group flex items-center gap-2.5 bg-slate-100 hover:bg-indigo-100 text-indigo-700 font-medium px-5 py-2.5 rounded-xl border border-slate-300 hover:border-indigo-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                      >
+                        <Edit className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" />
+                        Edit
+                      </button>
+
+                      {/* DELETE BUTTON — Secondary danger style (soft red) */}
+                      <button
+                        onClick={() => openDeleteModal(order)}
+                        className="group flex items-center gap-2.5 bg-red-50 hover:bg-red-100 text-red-700 font-medium px-5 py-2.5 rounded-xl border border-red-200 hover:border-red-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                      >
+                        <Trash2 className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" />
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -99,18 +165,21 @@ export default function OrderTable({ orders, search, onEdit, onDelete }: Props) 
         </table>
       </div>
 
-      {/* Beautiful Delete Confirmation Modal */}
+      {/* Modal */}
       <ConfirmModal
         isOpen={deleteModalOpen}
         title="Delete Order?"
         message={
           orderToDelete ? (
             <>
-              Are you sure you want to delete <strong>Order #{orderToDelete.id}</strong>?
+              Are you sure you want to <span className="text-red-600 font-bold">permanently delete</span> this order?
               <br /><br />
-              <em className="text-gray-600">"{orderToDelete.orderDescription}"</em>
-              <br /><br />
-              <span className="text-red-600 font-medium">This action cannot be undone.</span>
+              <div className="bg-slate-50 p-6 rounded-2xl text-center border border-slate-200">
+                <p className="text-2xl font-bold text-slate-800">Order #{orderToDelete.id}</p>
+                <p className="text-lg text-slate-600 mt-2 italic">"{orderToDelete.orderDescription}"</p>
+              </div>
+              <br />
+              <span className="text-red-600 font-bold">This action cannot be undone.</span>
             </>
           ) : ''
         }
