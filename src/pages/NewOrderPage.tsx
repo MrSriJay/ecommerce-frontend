@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OrderForm from '../components/OrderForm';
-import { createOrder, fetchProducts } from '../services/api';
+import { createOrder } from '../services/api';
 
 export default function NewOrderPage() {
   const navigate = useNavigate();

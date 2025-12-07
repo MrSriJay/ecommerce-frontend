@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import OrderForm from '../components/OrderForm';
-import { fetchOrder, updateOrder, fetchProducts } from '../services/api';
+import { fetchOrder, updateOrder } from '../services/api';
 
 export default function EditOrderPage() {
   const { id } = useParams<{ id: string }>();

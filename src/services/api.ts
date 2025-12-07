@@ -21,7 +21,7 @@ export type OrderDetail = {
   orderProducts: { productId: number; product: Product }[];
 };
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://ecommerce-backend-p8njnbhyv-jayanga-palihenas-projects.vercel.app/api';
 
 export const api = axios.create({
   baseURL: API_URL,
