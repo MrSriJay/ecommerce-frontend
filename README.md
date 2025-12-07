@@ -48,21 +48,27 @@
 ## Screenshots
 
 **Welcome Screen**  
+
 ![Orders List](https://github.com/MrSriJay/ecommerce-frontend/blob/45c4ac2bd92cfcd8ef7577adcb6918f4146e2dbc/screenshots/homepage.png)
 
 **Main Orders Dashboard**  
+
 ![Orders List](https://github.com/MrSriJay/ecommerce-frontend/blob/45c4ac2bd92cfcd8ef7577adcb6918f4146e2dbc/screenshots/main.png)
 
 **Create New Order**  
+
 ![New Order Form](https://github.com/MrSriJay/ecommerce-frontend/blob/45c4ac2bd92cfcd8ef7577adcb6918f4146e2dbc/screenshots/addnew.png)
 
 **Edit Order**  
+
 ![New Order Form](https://github.com/MrSriJay/ecommerce-frontend/blob/45c4ac2bd92cfcd8ef7577adcb6918f4146e2dbc/screenshots/edit.png)
 
 **Custom Delete Confirmation Modal** 
+
 ![Delete Modal](https://github.com/MrSriJay/ecommerce-frontend/blob/45c4ac2bd92cfcd8ef7577adcb6918f4146e2dbc/screenshots/deletepromt.png)
 
 **Login Form**  
+
 ![Login Form](https://github.com/MrSriJay/ecommerce-frontend/blob/45c4ac2bd92cfcd8ef7577adcb6918f4146e2dbc/screenshots/login.png)  
 *The login form where users can enter their username and password to authenticate themselves before accessing the order management system.*
 
