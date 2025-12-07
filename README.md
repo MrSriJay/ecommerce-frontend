@@ -133,11 +133,18 @@ The frontend application includes a login functionality that works with JWT auth
 
 
 ---
-## Live Links
+## Live Demo
 
-- **Frontend App**: https://ecommerce-frontend-brown-eight.vercel.app/
+<p align="center">
+  <a href="https://ecommerce-frontend-brown-eight.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Frontend-00C7B7?style=for-the-badge&logo=vercel&logoColor=white" />
+  </a>
 
-- **Backend API + Swagger**: https://ecommerce-backend-eta-sandy.vercel.app/api/docs
+  <a href="https://ecommerce-backend-eta-sandy.vercel.app/api/docs" target="_blank">
+    <img src="https://img.shields.io/badge/Swagger%20API-4A90E2?style=for-the-badge&logo=swagger&logoColor=white" />
+  </a>
+</p>
+
 
 ---
 
